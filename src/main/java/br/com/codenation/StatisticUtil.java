@@ -8,17 +8,30 @@ public class StatisticUtil {
 		return Double.valueOf(Arrays.stream(elements).average().getAsDouble()).intValue();
 	}
 
+
 	public static int mode(int[] elements) {
-		int aux=0;
+		int count=0;
+		int retorna=0;
 
-		for (int i=1; i<elements.length; i++){
-
+		for (int i=0; i<elements.length; i++){
+			int aux=0;
+			for (int j=1; j<elements.length; j++){
+				if (elements[i]==elements[j]) aux++;
+			}
+			if (count<=aux){
+				count=aux;
+				retorna = elements[i];
+			}
 		}
 
-		return aux;
+		return retorna;
 	}
 
 	public static int median(int[] elements) {
-		return 0;
+		Arrays.sort(elements);
+
+		if(elements.length%2 == 1)  return elements[(elements.length/2)];
+
+		return ((elements[elements.length/2]) + (elements[elements.length/2 -1])) /2;
 	}
 }
